@@ -6,18 +6,22 @@ on:
 
 permissions:
   issues: write
-  
+
 jobs:
   generate-numbers:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: mkdir
-      run: mkdir -p build
-    - name: build cpp
-      run: clang++ -std=c++23 src/main.cpp -o build/main -v
-    - name: run cpp
-      run: build/main build/result.md
-    - uses: jayalfredprufrock/create-issues-action@v1
-      with:
-        template-path: 'build/result.md'
+      - uses: actions/checkout@v4
+      - name: mkdir
+        run: mkdir -p build
+      - name: build cpp
+        run: clang++ -std=c++23 src/main.cpp -o build/main -v
+      - name: run cpp
+        run: build/main build/result.md
+      - uses: JasonEtco/create-an-issue@v2
+        id: create-issue
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          filename: "build/result.md"
+      - run: "echo Created ${{ steps.create-issue.outputs.url }}"
