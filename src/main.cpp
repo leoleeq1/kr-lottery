@@ -27,7 +27,7 @@ int main(int argc, char **argv)
     {
         // const std::chrono::year_month_day ymd{std::chrono::floor<std::chrono::days>(std::chrono::system_clock::now())};
         // ofs << std::format("---\ntitle: Weekly Numbuers{}\n---\n\n", ymd);
-        ofs << "---\ntitle: Weekly Numbers {{ date | date('dddd, MMMM YYYY - Wo') }}\n---\n\n";
+        ofs << "---\ntitle: Weekly Numbers {{ date | date('MMMM YYYY - Wo') }}\n---\n\n";
     }
 
     for (auto &&lottery : lotteries)
