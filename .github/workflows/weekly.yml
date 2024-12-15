@@ -12,6 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+    - name: mkdir
+      run: mkdir -p build
     - name: build cpp
       run: clang++ -std=c++23 src/main.cpp -o build/main -v
     - name: run cpp
