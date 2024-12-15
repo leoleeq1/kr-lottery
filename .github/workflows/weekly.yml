@@ -23,5 +23,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          update_existing: true
           filename: "build/result.md"
       - run: "echo Created ${{ steps.create-issue.outputs.url }}"
