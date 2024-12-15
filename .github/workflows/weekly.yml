@@ -12,8 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: build & run cpp
-      run: clang++ -std=c++23 src/main.cpp -o build/main & build/main
+    - name: build cpp
+      run: clang++ -std=c++23 src/main.cpp -o build/main -v
+    - name: run cpp
+      run: build/main build/result.md
     - uses: jayalfredprufrock/create-issues-action@v1
       with:
         template: 'build/result.md'
