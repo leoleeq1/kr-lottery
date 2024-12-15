@@ -20,4 +20,4 @@ jobs:
       run: build/main build/result.md
     - uses: jayalfredprufrock/create-issues-action@v1
       with:
-        template: 'build/result.md'
+        template-path: 'build/result.md'
