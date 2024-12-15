@@ -1,0 +1,19 @@
+name: Weekly Lottery Number Generation
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: 1 0 * * 1
+
+permissions:
+  issues: write
+  
+jobs:
+  generate-numbers:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: build & run cpp
+      run: clang++ -std=c++23 src/main.cpp -o build/main & build/main
+    - uses: jayalfredprufrock/create-issues-action@v1
+      with:
+        template: 'build/result.md'
